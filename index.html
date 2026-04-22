@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neurodivergence Affinity Group &mdash; Adult ED Recovery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --text:       #1C1917;
+    --text-2:     #57534E;
+    --text-3:     #A8A29E;
+    --accent:     #6B5B95;
+    --accent-bg:  #EFECF5;
+    --cool:       #4A8278;
+    --cool-bg:    #E8F1EE;
+    --border:     #E7E5E4;
+    --bg:         #FAFAF7;
+    --surface:    #FFFFFF;
+}
+
+body {
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--cool) 100%);
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+}
+
+.header { margin-bottom: 2.5rem; }
+.header-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+.subtitle {
+    font-size: 1.05rem;
+    color: var(--text-2);
+    font-weight: 400;
+}
+
+.nav {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.nav button {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 1rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-3);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+}
+.nav button:hover { color: var(--text-2); }
+.nav button.active {
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom-color: var(--accent);
+}
+
+.page { display: none; }
+.page.active { display: block; animation: appear 0.25s ease; }
+@keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+
+.section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.5rem;
+}
+.section-label.warm { color: var(--accent); }
+.section-label.cool { color: var(--cool); }
+
+h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+}
+h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+.body-text {
+    font-size: 0.95rem;
+    color: var(--text-2);
+    line-height: 1.8;
+}
+.body-text + .body-text { margin-top: 0.75rem; }
+.body-text strong { color: var(--text); font-weight: 600; }
+
+.timing {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-3);
+    float: right;
+    margin-top: 0.2rem;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+}
+
+.callout {
+    border-left: 3px solid var(--border);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+}
+.callout.warm { border-left-color: var(--accent); background: var(--accent-bg); }
+.callout.cool { border-left-color: var(--cool); background: var(--cool-bg); }
+.callout .callout-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.4rem;
+}
+.callout.warm .callout-label { color: var(--accent); }
+.callout.cool .callout-label { color: var(--cool); }
+.callout p { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; }
+.callout p strong { color: var(--text); }
+
+.steps { margin: 1.5rem 0; }
+.step {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-3);
+    flex-shrink: 0;
+    width: 1.5rem;
+    text-align: right;
+}
+.step-content { flex: 1; }
+.step-q { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.step-hint { font-size: 0.82rem; color: var(--text-3); margin-top: 0.15rem; line-height: 1.6; }
+
+.accordion { margin: 1.5rem 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.acc-item { border-bottom: 1px solid var(--border); }
+.acc-item:last-child { border-bottom: none; }
+.acc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    background: var(--surface);
+    transition: background 0.15s;
+    user-select: none;
+}
+.acc-header:hover { background: var(--bg); }
+.acc-title { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.acc-icon { font-size: 1.1rem; color: var(--text-3); transition: transform 0.2s; font-weight: 300; line-height: 1; }
+.acc-item.open .acc-icon { transform: rotate(45deg); }
+.acc-body { display: none; padding: 0 1.25rem 1.25rem; background: var(--surface); }
+.acc-item.open .acc-body { display: block; }
+.acc-body p { font-size: 0.9rem; color: var(--text-2); line-height: 1.75; }
+.acc-body p + p { margin-top: 0.75rem; }
+.acc-body ul { list-style: none; margin-top: 0.5rem; }
+.acc-body ul li {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    line-height: 1.75;
+    padding-left: 1rem;
+    position: relative;
+}
+.acc-body ul li::before {
+    content: '\00B7';
+    position: absolute;
+    left: 0;
+    color: var(--text-3);
+}
+.acc-body .aside {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--text-3);
+    padding-left: 1rem;
+    border-left: 2px solid var(--border);
+}
+
+.questions { margin: 1.5rem 0; }
+.question { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.question:last-child { border-bottom: none; }
+.question-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0.3rem; }
+.question-text { font-size: 0.95rem; font-weight: 500; color: var(--text); line-height: 1.7; }
+.question-note { font-size: 0.82rem; font-style: italic; color: var(--text-3); margin-top: 0.3rem; }
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+}
+.option {
+    background: var(--surface);
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.option:hover { background: var(--bg); }
+.option.selected { background: var(--accent-bg); }
+.option-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+}
+.option-desc {
+    font-size: 0.8rem;
+    color: var(--text-3);
+    line-height: 1.5;
+}
+
+.page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+.page-nav button {
+    background: none; border: none; font-family: inherit;
+    font-size: 0.9rem; font-weight: 500; color: var(--accent);
+    cursor: pointer; padding: 0.5rem 0; transition: opacity 0.15s;
+}
+.page-nav button:hover { opacity: 0.7; }
+.page-nav .ghost { visibility: hidden; }
+
+.footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    text-align: center; font-size: 0.8rem; color: var(--text-3); line-height: 1.8;
+}
+.footer strong { color: var(--text-2); font-weight: 600; }
+
+@media (max-width: 600px) {
+    .container { padding: 2rem 1.25rem 3rem; }
+    h1 { font-size: 1.8rem; }
+    .options-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header class="header">
+    <div class="header-label">Affinity Group &mdash; Adult ED Recovery</div>
+    <h1>Neurodivergence in Recovery</h1>
+    <p class="subtitle">A one-off virtual space for ND clients to be in a room together, on our own terms.</p>
+</header>
+
+<nav class="nav">
+    <button class="active" onclick="showPage(0, this)">Welcome</button>
+    <button onclick="showPage(1, this)">Frame</button>
+    <button onclick="showPage(2, this)">Bridge</button>
+    <button onclick="showPage(3, this)">Discussion</button>
+    <button onclick="showPage(4, this)">Closing</button>
+</nav>
+
+<!-- ============ PAGE 0: WELCOME ============ -->
+<div class="page active">
+    <div class="section-label warm">Today</div>
+    <h2>What this is <span class="timing">8 to 10 min</span></h2>
+    <p class="body-text">This is an affinity group, not a process group and not a skills group. One hour for people in this program who identify as neurodivergent, however you arrived at that word. Diagnosed, self-identified, exploring the question, all welcome.</p>
+    <p class="body-text">There is no curriculum to get through. No homework. No charting of what gets said unless someone names a safety concern, and you will hear it named if that happens.</p>
+
+    <div class="callout warm">
+        <div class="callout-label">Confidentiality</div>
+        <p>What's shared here stays here. Names, stories, details, all of it is protected. The only exception is safety.</p>
+    </div>
+
+    <div class="callout">
+        <p><strong>You can pass at any point.</strong> No explanation needed. If something doesn't fit right now, say "pass" and we move on.</p>
+    </div>
+
+    <div class="section-label cool" style="margin-top:2.5rem">How this room works</div>
+    <h2>Virtual ground rules <span class="timing">3 min</span></h2>
+    <p class="body-text">Cameras are optional. The chat is a full channel, not a backup. Speaking, typing, reacting, or sitting silently all count as being here. Stim, fidget, knit, look away from the screen, lie on the floor. None of it needs explanation.</p>
+
+    <div class="callout cool">
+        <div class="callout-label">Access in chat</div>
+        <p>If you want, drop your name and pronouns in chat, plus one access need for the hour ("please repeat the prompt," "going off-camera," "I'll respond in chat only"). Optional. The facilitator will go first.</p>
+    </div>
+
+    <div class="section-label" style="margin-top:2.5rem">Opening</div>
+    <h2>One word in chat <span class="timing">3 min</span></h2>
+    <p class="body-text">When you're ready, drop one word in chat for how you arrived. No elaboration required. The facilitator reads them aloud, slowly, with pauses. That is the opener.</p>
+
+    <div class="page-nav">
+        <button class="ghost">&larr; Back</button>
+        <button onclick="showPage(1, navBtns[1])">Frame &rarr;</button>
+    </div>
+</div>
+
+<!-- ============ PAGE 1: FRAME ============ -->
+<div class="page">
+    <div class="section-label warm">Shared vocabulary</div>
+    <h2>A few words, lightly offered <span class="timing">10 to 12 min</span></h2>
+    <p class="body-text">These are concepts that often help name what people in this group already know in their bodies. Open the ones that interest you. Skip the rest. The facilitator will name each briefly, then open the floor.</p>
+
+    <div class="accordion">
+        <div class="acc-item open">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-title">Double empathy</div>
+                <div class="acc-icon">+</div>
+            </div>
+            <div class="acc-body">
+                <p>The communication gap between neurodivergent and neurotypical people runs both directions. Years of feeling "too much" or "not enough" in process groups may be a mismatch between parties, not a deficit in one of them.</p>
+                <div class="aside">Milton, 2012.</div>
+            </div>
+        </div>
+        <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-title">Masking and unmasking</div>
+                <div class="acc-icon">+</div>
+            </div>
+            <div class="acc-body">
+                <p>The conscious and unconscious work of suppressing ND traits to pass. The cost shows up as exhaustion, lost self-knowledge, and burnout. Unmasking is not a performance of ND traits. It is the slow return of access to your own preferences and signal.</p>
+            </div>
+        </div>
+        <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-title">Monotropism</div>
+                <div class="acc-icon">+</div>
+            </div>
+            <div class="acc-body">
+                <p>Attention pools deeply into a narrow set of interests rather than distributing across many. This is why interruption costs so much, why transitions are hard, why "just stop and come back later" doesn't translate.</p>
+            </div>
+        </div>
+        <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-title">Spiky profile</div>
+                <div class="acc-icon">+</div>
+            </div>
+            <div class="acc-body">
+                <p>Abilities are uneven. The peaks and valleys do not predict each other. Treatment often reads the valleys as resistance and the peaks as evidence you should be able to do everything else.</p>
+            </div>
+        </div>
+        <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-title">Interoception, alexithymia</div>
+                <div class="acc-icon">+</div>
+            </div>
+            <div class="acc-body">
+                <p>ND bodies often send unreliable or differently-calibrated internal signals. Hunger, fullness, fatigue, emotion, all of it can be hard to read. "Listen to your body" assumes a signal that is steady. For many of us, the signal is not steady, and the work is different.</p>
+            </div>
+        </div>
+        <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-title">Autistic burnout, RSD</div>
+                <div class="acc-icon">+</div>
+            </div>
+            <div class="acc-body">
+                <p>Burnout is the chronic exhaustion and skill-loss after sustained masking or demand-overload. It looks like depression, lives in the nervous system. RSD names the speed and intensity of the pain that comes with perceived rejection or criticism, common in ADHD presentations.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout">
+        <p>None of this is a test. Take what fits, leave what doesn't. The point is to have words available if you reach for them later.</p>
+    </div>
+
+    <div class="page-nav">
+        <button onclick="showPage(0, navBtns[0])">&larr; Welcome</button>
+        <button onclick="showPage(2, navBtns[2])">Bridge &rarr;</button>
+    </div>
+</div>
+
+<!-- ============ PAGE 2: BRIDGE ============ -->
+<div class="page">
+    <div class="section-label warm">Bridge</div>
+    <h2>From ND experience to recovery <span class="timing">10 to 12 min</span></h2>
+    <p class="body-text">Three questions. Whoever wants to come in, comes in. Speak, type in chat, or pass. Silence between answers is not a problem to solve.</p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <div class="step-q">When did food first become complicated in a way that wasn't about weight or shape?</div>
+                <div class="step-hint">Texture, smell, predictability, the wrong fork, eating in front of people, any of it counts. Specifics over summaries.</div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <div class="step-q">What's one thing you've been masking this week that you'd set down if you could?</div>
+                <div class="step-hint">Eye contact, tone of voice, sitting still, performing engagement in groups. Name the specific thing, not the category.</div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <div class="step-q">Is there a word for your experience you found recently that fit?</div>
+                <div class="step-hint">A diagnosis, a community term, a metaphor. Or none of the above and that's the answer.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout cool">
+        <div class="callout-label">Facilitator note</div>
+        <p>Resist filling the silence. Pauses are processing time. If the same voice comes in twice, name the room: "I want to make sure there's space for other voices, and no pressure if you don't want to come in."</p>
+    </div>
+
+    <div class="page-nav">
+        <button onclick="showPage(1, navBtns[1])">&larr; Frame</button>
+        <button onclick="showPage(3, navBtns[3])">Discussion &rarr;</button>
+    </div>
+</div>
+
+<!-- ============ PAGE 3: DISCUSSION ============ -->
+<div class="page">
+    <div class="section-label warm">The heart of the hour</div>
+    <h2>Group discussion <span class="timing">18 to 22 min</span></h2>
+    <p class="body-text">Pick the prompts that have life in the room. Not all of them. The facilitator offers one, holds the silence, lets the conversation go where it goes, then offers the next when energy fades.</p>
+
+    <div class="questions">
+        <div class="question">
+            <div class="question-label">Prompt 1</div>
+            <div class="question-text">What gets read as ED behavior in this program that is actually ND for you?</div>
+            <div class="question-note">Sensory food refusal, rigid routines, parallel eating, hyperfocus through meals, the same breakfast every day. Validate without competing on whose example is "more" ND.</div>
+        </div>
+        <div class="question">
+            <div class="question-label">Prompt 2</div>
+            <div class="question-text">Name a food rule that is actually a sensory rule.</div>
+            <div class="question-note">Often a relief to say out loud. Hold the difference between rule-as-restriction and rule-as-regulation. Both can be true at once.</div>
+        </div>
+        <div class="question">
+            <div class="question-label">Prompt 3</div>
+            <div class="question-text">What does masking cost you in treatment specifically?</div>
+            <div class="question-note">Groups, meals, milieu, interactions with staff. The honest answer often surprises the room. Do not redirect to silver linings.</div>
+        </div>
+        <div class="question">
+            <div class="question-label">Prompt 4</div>
+            <div class="question-text">What accommodation do you wish this program had?</div>
+            <div class="question-note">Concrete is the point. Lower lights at dinner, written check-ins, advance notice on schedule changes, fewer surprise process groups, a quiet room. Encourage the room to riff off each other.</div>
+        </div>
+        <div class="question">
+            <div class="question-label">Prompt 5 &mdash; optional</div>
+            <div class="question-text">What special interest or deep focus has kept you alive?</div>
+            <div class="question-note">Closer to the bone. Use only if the room has settled. Often produces the most connection of the hour.</div>
+        </div>
+    </div>
+
+    <div class="page-nav">
+        <button onclick="showPage(2, navBtns[2])">&larr; Bridge</button>
+        <button onclick="showPage(4, navBtns[4])">Closing &rarr;</button>
+    </div>
+</div>
+
+<!-- ============ PAGE 4: CLOSING ============ -->
+<div class="page">
+    <div class="section-label warm">From this hour</div>
+    <h2>Pick one to take with you <span class="timing">5 to 7 min</span></h2>
+    <p class="body-text">Not a homework assignment. A small handhold for the rest of the day. Pick the one that has the least friction.</p>
+
+    <div class="options-grid">
+        <div class="option" onclick="selectOption(this)">
+            <div class="option-label">One unmasking micro-move</div>
+            <div class="option-desc">Stim openly in one group this week. Skip the eye contact you usually fake. Let your voice land where it lands.</div>
+        </div>
+        <div class="option" onclick="selectOption(this)">
+            <div class="option-label">One accommodation to ask for</div>
+            <div class="option-desc">Name a person and a request. "I'm going to ask my therapist for written check-ins." Concrete beats general.</div>
+        </div>
+        <div class="option" onclick="selectOption(this)">
+            <div class="option-label">One ND-affirming resource</div>
+            <div class="option-desc">Stimpunks, Therapist Neurodiversity Collective, Reframing Autism, the Monotropism Questionnaire, Devon Price's <em>Unmasking Autism</em>.</div>
+        </div>
+        <div class="option" onclick="selectOption(this)">
+            <div class="option-label">Nothing</div>
+            <div class="option-desc">Showing up was the work. That counts. Closing the laptop and resting is a complete answer.</div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-label cool">Checkout</div>
+    <h2>One sentence, in chat or aloud <span class="timing">3 min</span></h2>
+    <p class="body-text">One thing you're taking from this hour, plus the small concrete thing you'll do or not do because of it. One sentence, not a paragraph. Chat is fine. Pass is fine.</p>
+
+    <div class="callout cool">
+        <div class="callout-label">Facilitator note</div>
+        <p>Push gently for specifics. "I'll rest" becomes "I'll close the laptop for twenty minutes after this." Then close the room with thirty seconds of shared silence and a clear ending. ND nervous systems regulate better with a known landing.</p>
+    </div>
+
+    <div class="footer">
+        <strong>Crisis resources</strong><br>
+        988 Suicide & Crisis Lifeline: call or text <strong>988</strong><br>
+        Crisis Text Line: text <strong>HELLO</strong> to 741741
+    </div>
+
+    <div class="page-nav">
+        <button onclick="showPage(3, navBtns[3])">&larr; Discussion</button>
+        <button class="ghost">Done</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+const pages = document.querySelectorAll('.page');
+const navBtns = document.querySelectorAll('.nav button');
+
+function showPage(idx, btn) {
+    pages.forEach(p => p.classList.remove('active'));
+    navBtns.forEach(b => b.classList.remove('active'));
+    pages[idx].classList.add('active');
+    navBtns[idx].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAcc(header) {
+    header.parentElement.classList.toggle('open');
+}
+
+function selectOption(el) {
+    el.classList.toggle('selected');
+}
+</script>
+
+</body>
+</html>
